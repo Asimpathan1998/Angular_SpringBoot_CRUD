@@ -1,0 +1,115 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 mt-6">
+            <h1 class="text-center text-white bg-success ">Courier Detail</h1>
+            <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+                <fieldset>
+                    <div class="form-group">
+                        <label for="id" class="h3"> ID: </label>
+                        <input required type="number" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="name"><span class="req">* </span> Name: </label>
+                        <input required type="text" #name (ngModel)="name" id="name" name="name"
+                            class="form-control phone" maxlength="28" placeholder="Enter your full name" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address"><span class="req">* </span> Address: </label>
+                        <input class="form-control" #address (ngModel)="address" type="text" name="address" required
+                            placeholder="Enter valid your address" />
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="provider"><span class="req">* </span> Provider: </label>
+                        <select class="form-control" name="provider" #provider (ngModel)="provider">
+                            <option value="FedEx">FedEx</option>
+                            <option value="DHL">DHL</option>
+                            <option value="GES">Great Eastern Shipping</option>
+                            <option value="LLC">Al Mas Cargo LLC </option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="boxweight"><span class="req">* </span>Box Weight:(Kg) </label>
+                        <input class="form-control" #boxweight (ngModel)="boxweight" type="number" name="boxweight"
+                            placeholder="Box Weight in Kg" required />
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price"><span class="req">* </span> Price: </label>
+                        <input class="form-control" #price (ngModel)="price" required type="number" name="price"
+                            id="price" />
+
+                    </div>
+
+                    <div class="d-grid gap-2 col-5 mx-auto">
+                        <button class="btn btn-success me-md-2" style="size: 30px;">Register</button>
+                        &nbsp;
+
+                    </div>
+
+                    <div class="mt-5">
+                        <table class="table table-bordered">
+                            <thead class="thead">
+                                <tr>
+                                    <th>id</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Provider</th>
+                                    <th>Box Weight</th>
+                                    <th>Price</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tbody">
+                                <tr *ngFor="let getCouriers of getaCourier ">
+
+                                    <td> {{getCouriers.id}} </td>
+                                    <td> {{getCouriers.name}} </td>
+                                    <td> {{getCouriers.address}} </td>
+                                    <td> {{getCouriers.provider}} </td>
+                                    <td> {{getCouriers.boxweight}} </td>
+                                    <td> {{getCouriers.price}} </td>
+                                    <td><button class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal"
+                                            (click)="updateCourier(getCouriers)">Update</button></td>
+                                    <td><button class="btn btn-danger" (click)="deleteUser(getCouriers)">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
